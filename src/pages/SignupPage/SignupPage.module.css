@@ -1,0 +1,16 @@
+.signup-container {
+    padding: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    height: 73vh;
+    overflow: scroll;
+    color: #58504a;
+}
+
+.success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,32 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f3e3;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    border-radius: 20px;
+    padding: 1.5%;
+    color: #58504a;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: #58504a;
+}
+
+.form-actions {
+    display: flex;
+    gap: 20px;
+    margin: 0 auto;
+}
+
+.error-message {
+    color: white;
+    background-color: orangered;
+    border-radius: 20px;
+    padding: 1.5%;
+}

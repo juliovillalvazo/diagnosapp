@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f3e3;
+    border-radius: 20px;
+    padding: 5%;
+    color: #1b2021;
+    max-height: 440px;
+}
+
+.scroll {
+    overflow: scroll;
+}

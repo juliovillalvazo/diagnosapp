@@ -1,0 +1,19 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5%;
+    gap: 20px;
+    height: 68vh;
+}
+
+.profile-picture {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.edit {
+    align-self: flex-end;
+    margin-top: 40px;
+}

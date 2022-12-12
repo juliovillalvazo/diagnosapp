@@ -1,0 +1,24 @@
+.LoginPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    color: #58504a;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    background-color: #f7f3e3;
+    border-radius: 20px;
+    gap: 10px;
+}
+
+.error-message {
+    color: white;
+    background-color: orangered;
+    border-radius: 20px;
+    padding: 1.5%;
+}
