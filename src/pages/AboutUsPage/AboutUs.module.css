@@ -1,0 +1,51 @@
+.AboutUs {
+    display: flex;
+    height: 85vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 200px;
+}
+
+.card {
+    padding: 2%;
+    background-color: #f7f3e3;
+    border-radius: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.description {
+    font-size: 28px;
+
+    padding: 2%;
+    border-radius: 20px;
+}
+
+.actions {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 1.5% 3%;
+    border-radius: 20px;
+    text-decoration: underline;
+}
+
+.actions a,
+.actions a:visited {
+    color: #58504a;
+    transition: all 0.2s;
+}
+
+.actions a:hover {
+    transform: scale(1.5);
+    color: #5db7de;
+}
