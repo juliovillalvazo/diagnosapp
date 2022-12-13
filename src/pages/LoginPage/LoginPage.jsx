@@ -85,7 +85,9 @@ function LoginPage() {
                 <label>Choose a login type:</label>
 
                 <Select defaultValue={type} onChange={(e) => setType(e)}>
-                    <Option disabled>Choose a login type</Option>
+                    <Option value='choose a login type22' disabled>
+                        Choose a login type
+                    </Option>
                     <Option value='patient'>patient</Option>
                     <Option value='doctor'>doctor</Option>
                 </Select>

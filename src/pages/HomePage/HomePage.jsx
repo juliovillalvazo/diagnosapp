@@ -4,12 +4,35 @@ import stethoscopeImg from '../../assets/stethoscope.png';
 import Button from '../../components/UI/Button/Button';
 import Card from '../../components/UI/Card/Card';
 import { AuthContext } from '../../context/auth.context';
+import { Dropdown } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function HomePage() {
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleMenuClick = () => {
+        navigate('/profile');
+    };
+
+    const items = [
+        {
+            label: 'logout',
+            key: '1',
+            icon: <UserOutlined />,
+            danger: true,
+        },
+    ];
+
+    const menuProps = {
+        items,
+        onClick: () => {
+            logOutUser();
+        },
+    };
     return (
         <React.Fragment>
             <div className={styles.container}>
@@ -34,9 +57,10 @@ function HomePage() {
                             )}
                             {isLoggedIn && (
                                 <div className={styles['right-actions']}>
-                                    <Button onClick={logOutUser}>Logout</Button>
-
-                                    <Link to='/profile'>
+                                    <Dropdown.Button
+                                        menu={menuProps}
+                                        onClick={handleMenuClick}
+                                    >
                                         <div className={styles['profile-pic']}>
                                             <img
                                                 src={user.profilePicture}
@@ -52,7 +76,7 @@ function HomePage() {
                                                 {user && user.firstName}
                                             </span>
                                         </div>
-                                    </Link>
+                                    </Dropdown.Button>
                                 </div>
                             )}
                         </div>

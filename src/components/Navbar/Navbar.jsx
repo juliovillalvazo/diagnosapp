@@ -1,15 +1,37 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/auth.context';
 import Button from '../UI/Button/Button';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './Navbar.module.css';
 import stethoscopeImg from '../../assets/stethoscope.png';
+import { Dropdown } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 function Navbar() {
     // Subscribe to the AuthContext to gain access to
     // the values from AuthContext.Provider's `value` prop
+    const navigate = useNavigate();
     const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+    const handleMenuClick = () => {
+        navigate('/profile');
+    };
+
+    const items = [
+        {
+            label: 'logout',
+            key: '1',
+            icon: <UserOutlined />,
+            danger: true,
+        },
+    ];
+
+    const menuProps = {
+        items,
+        onClick: () => {
+            logOutUser();
+        },
+    };
 
     return (
         <nav className={styles.navbar}>
@@ -27,9 +49,7 @@ function Navbar() {
 
             {isLoggedIn && (
                 <div className={styles['right-actions']}>
-                    <Button onClick={logOutUser}>Logout</Button>
-
-                    <Link to='/profile'>
+                    <Dropdown.Button menu={menuProps} onClick={handleMenuClick}>
                         <div className={styles['profile-pic']}>
                             <img
                                 src={user.profilePicture}
@@ -43,7 +63,7 @@ function Navbar() {
                             />
                             <span>{user && user.firstName}</span>
                         </div>
-                    </Link>
+                    </Dropdown.Button>
                 </div>
             )}
 
