@@ -1,0 +1,43 @@
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 83vh;
+}
+
+.card {
+    display: flex;
+    gap: 30px;
+    background-color: #f7f3e3;
+    padding: 5%;
+}
+
+.feedbackImg {
+    width: 300px;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.error-message {
+    color: white;
+    background-color: orangered;
+    border-radius: 20px;
+    padding: 1.5%;
+    max-width: 190px;
+}

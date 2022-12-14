@@ -17,7 +17,9 @@ const Footer = () => {
                         github
                     </a>
                 </li>
-                <li>contact</li>
+                <li>
+                    <Link to='/contact'>contact</Link>
+                </li>
             </ul>
             <p>&copy; diagnosapp</p>
         </footer>

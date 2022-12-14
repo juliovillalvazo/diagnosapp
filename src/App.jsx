@@ -12,6 +12,7 @@ import Navbar from './components/Navbar/Navbar';
 import IsPrivate from './components/IsPrivate/IsPrivate';
 import IsAnon from './components/IsAnon/IsAnon';
 import AboutUs from './pages/AboutUsPage/AboutUs';
+import Contact from './pages/ContactPage/ContactPage';
 
 function App() {
     const { pathname } = useLocation();
@@ -50,6 +51,7 @@ function App() {
                 />
 
                 <Route path='/about-us' element={<AboutUs />} />
+                <Route path='/contact' element={<Contact />} />
                 <Route path='*' element={<NotFoundPage />} />
             </Routes>
             <Footer />
