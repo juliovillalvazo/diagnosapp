@@ -15,6 +15,8 @@ import AboutUs from './pages/AboutUsPage/AboutUs';
 import Contact from './pages/ContactPage/ContactPage';
 import CalendarPage from './pages/CalendarPage/CalendarPage';
 import ResultsPage from './pages/ResultsPage/ResultsPage';
+import DoctorProfilePage from './pages/DoctorProfilePage/DoctorProfilePage';
+import SchedulePage from './pages/SchedulePage/SchedulePage';
 
 function App() {
     const { pathname } = useLocation();
@@ -42,6 +44,17 @@ function App() {
                         </IsPrivate>
                     }
                 />
+
+                <Route
+                    path='/schedule/doctors/:idDoctor'
+                    element={
+                        <IsPrivate>
+                            <SchedulePage />
+                        </IsPrivate>
+                    }
+                />
+
+                <Route path='/doctor/:id' element={<DoctorProfilePage />} />
 
                 <Route path='/results' element={<ResultsPage />} />
 

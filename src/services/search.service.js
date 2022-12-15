@@ -11,6 +11,10 @@ class Search {
     getResult = async (query) => {
         return this.api.get(`/api/search/doctors?${query}`);
     };
+
+    getDoctorInfo = async (id) => {
+        return this.api.get(`/auth/doctors/${id}`);
+    };
 }
 
 const search = new Search();

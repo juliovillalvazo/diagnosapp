@@ -43,7 +43,7 @@ const SearchPage = () => {
             <h3>your query result</h3>
             <div className={styles['results-container']}>
                 {isLoading && (
-                    <div>
+                    <div style={{ alignSelf: 'center' }}>
                         <p>loading results...</p>
                         <Spin />
                     </div>
@@ -56,7 +56,9 @@ const SearchPage = () => {
                                 <h3>
                                     {doctor.firstName} {doctor.lastName}
                                 </h3>
-                                <Link>see doctor profile</Link>
+                                <Link to={`/doctor/${doctor._id}`}>
+                                    see doctor profile
+                                </Link>
                             </div>
 
                             <p>specialty: {doctor.specialty.name}</p>

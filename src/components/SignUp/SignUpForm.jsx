@@ -13,6 +13,8 @@ import { Input, Select } from 'antd';
 
 const { Option } = Select;
 
+const API_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:5005';
+
 const SignUpForm = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -30,9 +32,7 @@ const SignUpForm = (props) => {
     const getSpecialties = useCallback(async () => {
         setIsLoading(true);
         try {
-            const { data } = await axios.get(
-                'http://localhost:5005/api/specialties'
-            );
+            const { data } = await axios.get(`${API_URL}/api/specialties`);
 
             setSpecialties(data);
         } catch (err) {
