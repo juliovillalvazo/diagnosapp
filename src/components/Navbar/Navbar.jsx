@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import styles from './Navbar.module.css';
 import stethoscopeImg from '../../assets/stethoscope.png';
 import { Dropdown } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { CalendarOutlined, UserOutlined } from '@ant-design/icons';
 
 function Navbar() {
     // Subscribe to the AuthContext to gain access to
@@ -19,6 +19,11 @@ function Navbar() {
 
     const items = [
         {
+            label: 'appointments history',
+            key: '0',
+            icon: <CalendarOutlined />,
+        },
+        {
             label: 'logout',
             key: '1',
             icon: <UserOutlined />,
@@ -28,8 +33,17 @@ function Navbar() {
 
     const menuProps = {
         items,
-        onClick: () => {
-            logOutUser();
+        onClick: (e) => {
+            switch (e.key) {
+                case '1':
+                    logOutUser();
+                    break;
+                case '0':
+                    navigate('/calendar');
+                    break;
+                default:
+                    return;
+            }
         },
     };
 
@@ -39,7 +53,7 @@ function Navbar() {
                 <Link to='/'>
                     <div className={styles.logo}></div>
                 </Link>
-                <SearchBar className='normal-navbar box-shadow' />
+                <SearchBar className='normal-navbar' />
             </div>
             <img
                 className={styles.stethoscope}

@@ -1,0 +1,17 @@
+.calendar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5% 2%;
+}
+
+.calendarCard {
+    max-width: 90%;
+    padding: 2%;
+    background-color: #f7f3e3;
+    border-radius: 20px;
+}
+
+.calendarCard h3 {
+    color: #58504a;
+}

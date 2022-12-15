@@ -5,7 +5,7 @@ import Button from '../../components/UI/Button/Button';
 import Card from '../../components/UI/Card/Card';
 import { AuthContext } from '../../context/auth.context';
 import { Dropdown } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { UserOutlined, CalendarOutlined } from '@ant-design/icons';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { Link, useNavigate } from 'react-router-dom';
@@ -20,6 +20,11 @@ function HomePage() {
 
     const items = [
         {
+            label: 'appointments history',
+            key: '0',
+            icon: <CalendarOutlined />,
+        },
+        {
             label: 'logout',
             key: '1',
             icon: <UserOutlined />,
@@ -29,8 +34,17 @@ function HomePage() {
 
     const menuProps = {
         items,
-        onClick: () => {
-            logOutUser();
+        onClick: (e) => {
+            switch (e.key) {
+                case '1':
+                    logOutUser();
+                    break;
+                case '0':
+                    navigate('/calendar');
+                    break;
+                default:
+                    return;
+            }
         },
     };
     return (
@@ -65,8 +79,8 @@ function HomePage() {
                                             <img
                                                 src={user.profilePicture}
                                                 style={{
-                                                    width: 25,
-                                                    height: 25,
+                                                    width: 23,
+                                                    height: 23,
                                                     borderRadius: '50%',
                                                     display: 'block',
                                                 }}
@@ -89,7 +103,7 @@ function HomePage() {
                     <h1 className={styles.title}>
                         find the doctor you've been looking for!
                     </h1>
-                    <SearchBar className='center-page box-shadow' />
+                    <SearchBar className='center-page' />
                 </header>
                 <section className={styles.cards}>
                     <Card

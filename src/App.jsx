@@ -13,6 +13,8 @@ import IsPrivate from './components/IsPrivate/IsPrivate';
 import IsAnon from './components/IsAnon/IsAnon';
 import AboutUs from './pages/AboutUsPage/AboutUs';
 import Contact from './pages/ContactPage/ContactPage';
+import CalendarPage from './pages/CalendarPage/CalendarPage';
+import ResultsPage from './pages/ResultsPage/ResultsPage';
 
 function App() {
     const { pathname } = useLocation();
@@ -32,6 +34,16 @@ function App() {
                         </IsPrivate>
                     }
                 />
+                <Route
+                    path='/calendar'
+                    element={
+                        <IsPrivate>
+                            <CalendarPage />
+                        </IsPrivate>
+                    }
+                />
+
+                <Route path='/results' element={<ResultsPage />} />
 
                 <Route
                     path='/signup'

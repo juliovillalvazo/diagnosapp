@@ -39,6 +39,7 @@
     gap: 30px;
     position: relative;
     z-index: 20;
+    margin-right: 10px;
 }
 
 .profile-pic {
