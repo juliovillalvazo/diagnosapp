@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Form, Select, Input, Button, DatePicker } from 'antd';
 import styles from './Schedule.module.css';
+import appointmentService from '../../services/appointment.service';
+import { AuthContext } from '../../context/auth.context';
 
 const { Option } = Select;
 
@@ -48,7 +50,7 @@ const config = {
 };
 
 const SchedulePage = () => {
-    const { id } = useParams();
+    const { idDoctor } = useParams();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -56,6 +58,9 @@ const SchedulePage = () => {
     const [gender, setGender] = useState('');
     const [summary, setSummary] = useState('');
     const [date, setDate] = useState(new Date());
+    const { user } = useContext(AuthContext);
+
+    const navigate = useNavigate('/profile');
 
     const [form] = Form.useForm();
 
@@ -72,8 +77,23 @@ const SchedulePage = () => {
         </Form.Item>
     );
 
-    const handleSubmit = () => {
-        console.log('success');
+    const handleSubmit = async () => {
+        try {
+            await appointmentService.createAppointment(idDoctor, {
+                firstName,
+                lastName,
+                email,
+                gender,
+                phoneNumber,
+                summary,
+                appointment: date,
+                patient: user._id,
+                doctor: idDoctor,
+            });
+            navigate('/profile');
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (

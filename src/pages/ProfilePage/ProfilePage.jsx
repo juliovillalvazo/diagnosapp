@@ -1,7 +1,7 @@
 import styles from './ProfilePage.module.css';
 import ProfileSection from '../../components/UI/ProfileSection/ProfileSection';
 import { AuthContext } from '../../context/auth.context';
-import { useContext, useState } from 'react';
+import { useContext, useState, useCallback, useEffect } from 'react';
 import { Badge, Card, Space, Input, Button } from 'antd';
 import userService from '../../services/userEdit.service';
 
@@ -12,6 +12,8 @@ function ProfilePage() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [profilePicture, setProfilePicture] = useState(user.profilePicture);
+    const [appointments, setAppointments] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleCancel = () => {
         setToggleEdit((prevValue) => !prevValue);
@@ -19,6 +21,26 @@ function ProfilePage() {
         setLastName('');
         setEmail('');
     };
+
+    const getAppointments = useCallback(async () => {
+        setIsLoading(true);
+        try {
+            const { data } = await userService.getOne(user._id, user.type);
+
+            const appointmentsData = data.appointments.map((a) => {
+                return { ...a, appointment: new Date(a.appointment) };
+            });
+
+            setAppointments([...appointmentsData]);
+        } catch (err) {
+            console.log(err);
+        }
+        setIsLoading(false);
+    }, [user._id, user.type]);
+
+    useEffect(() => {
+        getAppointments();
+    }, [getAppointments]);
 
     const handleEdit = async (e) => {
         e.preventDefault();
@@ -151,21 +173,44 @@ function ProfilePage() {
             </ProfileSection>
             <ProfileSection className='scroll'>
                 <h3>next appointments</h3>
-                <Space
-                    direction='vertical'
-                    size='middle'
-                    style={{ width: '100%' }}
-                >
-                    <Badge.Ribbon text='today' color='red'>
-                        <Card>17:45 with Dr. Juan Carlos</Card>
-                    </Badge.Ribbon>
-                    <Badge.Ribbon text='soon' color='orange'>
-                        <Card>17:45 with Dr. Juan Carlos</Card>
-                    </Badge.Ribbon>
-                    <Badge.Ribbon text='1 week to go' color='green'>
-                        <Card>17:45 with Dr. Juan Carlos</Card>
-                    </Badge.Ribbon>
-                </Space>
+                {isLoading && <p>loading appointments...</p>}
+                {!isLoading && appointments.length > 0 && (
+                    <Space
+                        direction='vertical'
+                        size='middle'
+                        style={{ width: '100%' }}
+                    >
+                        {appointments.map((a) => (
+                            <Badge.Ribbon
+                                key={a._id}
+                                text={`${a.appointment.toLocaleDateString(
+                                    'en-US'
+                                )}`}
+                                color='orange'
+                            >
+                                <Card>
+                                    {user.type === 'patient' && (
+                                        <span>
+                                            {`${a.appointment.getHours()}:${a.appointment.getMinutes()}`}{' '}
+                                            with Dr. {a.doctor.firstName}{' '}
+                                            {a.doctor.lastName}
+                                        </span>
+                                    )}
+                                    {user.type === 'doctor' && (
+                                        <span>
+                                            {`${a.appointment.getHours()}:${a.appointment.getMinutes()}`}{' '}
+                                            with {a.patient.firstName}{' '}
+                                            {a.patient.lastName}
+                                        </span>
+                                    )}
+                                </Card>
+                            </Badge.Ribbon>
+                        ))}
+                    </Space>
+                )}
+                {!isLoading && !appointments.length && (
+                    <p>you don't have any appointments</p>
+                )}
             </ProfileSection>
         </div>
     );

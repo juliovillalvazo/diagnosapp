@@ -6,7 +6,7 @@ import { Button } from 'antd';
 import { AuthContext } from '../../context/auth.context';
 
 const DoctorProfilePage = () => {
-    const { isLoggedIn } = useContext(AuthContext);
+    const { isLoggedIn, user } = useContext(AuthContext);
     const { id } = useParams();
     const [doctorInfo, setDoctorInfo] = useState({});
     const [errorMessage, setErrorMessage] = useState('');
@@ -29,6 +29,11 @@ const DoctorProfilePage = () => {
     const handleClick = () => {
         if (!isLoggedIn) {
             setErrorMessage('you need to log in');
+            return;
+        }
+
+        if (user.type === 'doctor') {
+            setErrorMessage('you need to create a patient account');
             return;
         }
 
@@ -61,7 +66,7 @@ const DoctorProfilePage = () => {
                     </div>
                     <div>
                         {errorMessage && (
-                            <p className={styles.error}>you need to log in</p>
+                            <p className={styles.error}>{errorMessage}</p>
                         )}
                         <Button
                             type='primary'
