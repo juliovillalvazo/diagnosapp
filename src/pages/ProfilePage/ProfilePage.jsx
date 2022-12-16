@@ -126,7 +126,7 @@ function ProfilePage() {
                         </div>
 
                         <Input
-                            style={{ width: '150px' }}
+                            style={{ width: '214px' }}
                             type='file'
                             onChange={(e) => handleUpload(e)}
                         />
