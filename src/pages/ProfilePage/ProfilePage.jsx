@@ -54,7 +54,7 @@ function ProfilePage() {
                 email: email || user.email,
                 type: user.type,
                 profilePicture,
-                description,
+                description: description || user.description,
             });
             updateUser(user.type, data.authToken);
             setToggleEdit(false);
