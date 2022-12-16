@@ -81,13 +81,17 @@ const CalendarPage = () => {
         <section className={styles.calendar}>
             <div className={styles.calendarCard}>
                 <h3>Appointments history</h3>
-                {isLoading && <p>loading...</p>}
-                {!isLoading && (
+                {isLoading && !appointments.length && <p>loading...</p>}
+                {!isLoading && appointments.length > 0 && (
                     <Calendar
                         style={{ borderRadius: '20px', padding: '2%' }}
                         dateCellRender={dateCellRender}
                         monthCellRender={monthCellRender}
                     />
+                )}
+
+                {!isLoading && !appointments.length && (
+                    <p>you don't have any appointment</p>
                 )}
             </div>
         </section>

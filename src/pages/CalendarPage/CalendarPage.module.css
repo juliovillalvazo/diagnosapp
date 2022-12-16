@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     padding: 5% 2%;
+    min-height: 70vh;
 }
 
 .calendarCard {

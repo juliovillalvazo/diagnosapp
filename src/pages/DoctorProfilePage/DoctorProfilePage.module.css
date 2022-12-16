@@ -16,8 +16,8 @@
 }
 
 .profile-picture {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -38,6 +38,34 @@
     justify-self: end;
 }
 
+.reviews {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+}
+
+.reviews li {
+    background-color: white;
+    border-radius: 20px;
+    min-width: 200px;
+    padding: 2%;
+}
+
+.reviews li:not(:last-child) {
+    margin-bottom: 15px;
+}
+
 .error {
     color: orangered;
+}
+
+.delete {
+    color: orangered;
+}
+
+.delete:hover {
+    cursor: pointer;
 }
