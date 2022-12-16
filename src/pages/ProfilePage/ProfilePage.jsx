@@ -23,8 +23,6 @@ function ProfilePage() {
         setEmail('');
     };
 
-    console.log(user);
-
     const getAppointments = useCallback(async () => {
         setIsLoading(true);
         try {
