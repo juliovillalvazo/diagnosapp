@@ -11,6 +11,7 @@ function ProfilePage() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [description, setDescription] = useState('');
     const [profilePicture, setProfilePicture] = useState(user.profilePicture);
     const [appointments, setAppointments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -21,6 +22,8 @@ function ProfilePage() {
         setLastName('');
         setEmail('');
     };
+
+    console.log(user);
 
     const getAppointments = useCallback(async () => {
         setIsLoading(true);
@@ -51,6 +54,7 @@ function ProfilePage() {
                 email: email || user.email,
                 type: user.type,
                 profilePicture,
+                description,
             });
             updateUser(user.type, data.authToken);
             setToggleEdit(false);
@@ -93,6 +97,13 @@ function ProfilePage() {
                             <p>email address:</p>
                             <p>{user.email}</p>
                         </div>
+
+                        {user.type === 'doctor' && (
+                            <div>
+                                <p>description:</p>
+                                <p>{user.description}</p>
+                            </div>
+                        )}
 
                         <Button
                             className={styles.edit}
@@ -159,6 +170,20 @@ function ProfilePage() {
                                 }
                             />
                         </div>
+                        {user.type === 'doctor' && (
+                            <div className={styles.input}>
+                                <label htmlFor='description'>
+                                    description:
+                                </label>
+                                <Input.TextArea
+                                    id='description'
+                                    value={description || user.description}
+                                    onChange={({ target }) =>
+                                        setDescription(target.value)
+                                    }
+                                />
+                            </div>
+                        )}
                         <div className={styles['edit-actions']}>
                             <Button
                                 className={styles['cancel-button']}

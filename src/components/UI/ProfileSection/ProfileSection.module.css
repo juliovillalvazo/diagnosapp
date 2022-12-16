@@ -5,7 +5,8 @@
     border-radius: 20px;
     padding: 5%;
     color: #1b2021;
-    max-height: 440px;
+    min-height: 440px;
+    overflow: scroll;
 }
 
 .scroll {

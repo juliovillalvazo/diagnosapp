@@ -6,7 +6,6 @@ import { Button, Input } from 'antd';
 import { AuthContext } from '../../context/auth.context';
 import { DeleteOutlined } from '@ant-design/icons';
 import reviewService from '../../services/review.service';
-import { useToken } from 'antd/es/theme/internal';
 
 const DoctorProfilePage = () => {
     const { isLoggedIn, user } = useContext(AuthContext);
